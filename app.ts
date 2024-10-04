@@ -17,5 +17,5 @@ app.use(helmet());
 app.use('/', bookRoutes)
 
 app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
+    console.log(`Server is listening on port ${port}. Press CTRL+C to stop`);
 })
