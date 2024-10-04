@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "b8b1e68b-b996-4ce7-a034-382cd0f7200b",
+		"name": "Express TS book-shelf-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18900536"
+	},
+	"item": [
+		{
+			"name": "getBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateBook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 3,\r\n        \"author\": \"Some Wanker\",\r\n        \"title\": \"NAV\",\r\n        \"genre\": \"romance\",\r\n        \"date\": \"1899-06-17\",\r\n        \"description\": \"[REDACTED] Enim sint in aliquip incididunt aute cillum fugiat dolor do sit adipisicing. Veniam eu ut esse adipisicing ullamco ut dolor incididunt et ea nisi aute ex eiusmod. Sint sint nisi irure nisi duis amet. Irure aliqua eiusmod et voluptate nisi exercitation sint culpa anim voluptate ullamco ex deserunt. Culpa consequat est duis ut sint minim occaecat ad nostrud ex labore tempor. Labore exercitation sit dolor tempor excepteur et.\\r\\nCommodo voluptate cupidatat aliqua ullamco sunt laboris reprehenderit. Cupidatat veniam sint aliqua sunt nostrud aliquip anim tempor. Consectetur eu cillum eu eu ea consequat consectetur laborum excepteur. Velit non duis ipsum nulla id eiusmod cupidatat ipsum anim eu. Adipisicing non exercitation tempor qui Lorem proident velit exercitation excepteur aliquip anim Lorem. Veniam ut laboris do nostrud adipisicing ullamco quis.\\r\\n\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:7000/books/update/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"books",
+						"update",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBooksById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/books/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"books",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Book",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"author\": \"Added\",\r\n    \"title\": \"Added Book 12\",\r\n    \"genre\": \"phantasy\",\r\n    \"date\": \"2000-01-01\",\r\n    \"description\": \"Some description, bruv!\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7000/books/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"books",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/books/delete/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"books",
+						"delete",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
