@@ -16,7 +16,7 @@ function loadBooks() : Books {
 
 function saveBooks (): void {
     try {
-        fs.writeFileSync("./books.json", JSON.stringify(books), "utf-8")
+        fs.writeFileSync("./books.json", JSON.stringify(Object.fromEntries(books)), "utf-8")
         //console.log(`Books data saved successfully!`)
     } catch (error) {
         console.log(`Error : ${error}`)
