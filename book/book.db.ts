@@ -2,15 +2,15 @@ import {v4 as random_id} from "uuid";
 import {Book, Books} from "./book.interface";
 import * as fs from "node:fs";
 
-let books = loadBooks();
+let books : Books = loadBooks();
 
 function loadBooks() : Books {
     try {
         const data = fs.readFileSync("./books.json", "utf-8")
-        return JSON.parse(data)
+        return new Map<string, Book>(Object.entries(JSON.parse(data)));
     } catch (error) {
         console.log(`Error ${error}`)
-        return {}
+        return new Map<string, Book>;
     }
 }
 
@@ -23,7 +23,7 @@ function saveBooks (): void {
     }
 }
 export const findAll = async (): Promise<Book[]> => Object.values(books);
-export const findOne = async (id: string): Promise<Book> => books[id];
+export const findOne = async (id: string): Promise<Book | undefined> => books.get(id);
 
 export const findByTitle = async (title: string): Promise<Book | null> => {
     const allBooks = await findAll();
@@ -31,6 +31,12 @@ export const findByTitle = async (title: string): Promise<Book | null> => {
     if (!book) return null;
     return book;
 };
+
+export const getBooksPage = async (pageNumber: number, pageSize: number): Promise<[number, Book[]]> => {
+    let totalCount: number = books.size;
+    let start: number = pageNumber * pageSize;
+    return [totalCount, Array.from(books.values()).slice(start, start + pageSize)];
+}
 
 export const create = async (bookData: Book): Promise<Book | null> => {
     let id = random_id();
@@ -51,7 +57,7 @@ export const create = async (bookData: Book): Promise<Book | null> => {
         description: bookData.description
     };
 
-    books[id] = book;
+    books.set(id, book);
     saveBooks();
     return book;
 }
@@ -59,19 +65,16 @@ export const create = async (bookData: Book): Promise<Book | null> => {
 export const update = async (id: string, updateValues: Book): Promise<Book | null> => {
     const bookExists = await findOne(id);
     if (!bookExists) return null;
-    books[id] = {
-        ...bookExists,
-        ...updateValues
-    }
+    books.set(id, updateValues);
 
     saveBooks();
 
-    return books[id];
+    return books.get(id)!;
 }
 
 export const remove = async (id: string): Promise<null | void> => {
     const bookExists = await findOne(id);
     if (!bookExists) return null;
-    delete books[id];
+    books.delete(id);
     saveBooks();
 }

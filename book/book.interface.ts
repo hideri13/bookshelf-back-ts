@@ -7,6 +7,8 @@ export interface Book {
     description: string;
 }
 
-export interface Books {
-    [key: string]: Book;
-}
+// export interface Books {
+//     [key: string]: Book;
+// }
+
+export type Books = Map<string, Book>;
