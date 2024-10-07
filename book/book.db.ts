@@ -22,7 +22,7 @@ function saveBooks (): void {
         console.log(`Error : ${error}`)
     }
 }
-export const findAll = async (): Promise<Book[]> => Object.values(books);
+export const findAll = async (): Promise<Book[]> => Array.from(books.values());
 export const findOne = async (id: string): Promise<Book | undefined> => books.get(id);
 
 export const findByTitle = async (title: string): Promise<Book | null> => {
